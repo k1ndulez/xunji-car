@@ -1,0 +1,25 @@
+# Keil MDK build output
+MDK-ARM/*/*.o
+MDK-ARM/*/*.d
+MDK-ARM/*/*.crf
+MDK-ARM/*/*.axf
+MDK-ARM/*/*.hex
+MDK-ARM/*/*.map
+MDK-ARM/*/*.lnp
+MDK-ARM/*/*.dep
+MDK-ARM/*/*.htm
+MDK-ARM/*/*.lst
+MDK-ARM/*/*.iex
+MDK-ARM/*/*.__i
+MDK-ARM/*/*.bak
+
+# Keil per-user settings
+*.uvguix.*
+*.scvd
+RTE/
+
+# STM32CubeMX
+.mxproject
+
+# VS Code
+.vscode/
