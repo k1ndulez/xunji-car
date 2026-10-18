@@ -26,6 +26,9 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "usart.h"
+#include "motor.h"
+#include <stdio.h>
+#include <string.h> 
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -45,12 +48,20 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
+volatile uint32_t test_cnt= 0;
 
 /* USER CODE END Variables */
 /* Definitions for defaultTask */
 osThreadId_t defaultTaskHandle;
 const osThreadAttr_t defaultTask_attributes = {
   .name = "defaultTask",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityNormal,
+};
+/* Definitions for TEST */
+osThreadId_t TESTHandle;
+const osThreadAttr_t TEST_attributes = {
+  .name = "TEST",
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
@@ -61,6 +72,7 @@ const osThreadAttr_t defaultTask_attributes = {
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void *argument);
+void StartTask02(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -94,6 +106,9 @@ void MX_FREERTOS_Init(void) {
   /* creation of defaultTask */
   defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
 
+  /* creation of TEST */
+  TESTHandle = osThreadNew(StartTask02, NULL, &TEST_attributes);
+
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
@@ -114,16 +129,45 @@ void MX_FREERTOS_Init(void) {
 void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN StartDefaultTask */
-  char msg[] = "1000,2000\r\n";
-
+  char msg[48];
+	uint32_t cnt= 0;
+	uint32_t last= osKernelGetTickCount();
+	
+	motor_init();
+	motor_set(3600, 0);
   for(;;)
   {
-	HAL_UART_Transmit(&huart3, (uint8_t *)msg, 11, 100);
-    HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-    osDelay(500);
+	cnt++;
+	if(osKernelGetTickCount()-last>=1000)
+	{
+	last= osKernelGetTickCount();
+	 sprintf(msg, "cnt=%lu test=%lu heap=%lu\r\n", cnt, test_cnt, xPortGetFreeHeapSize());
+	 HAL_UART_Transmit(&huart3, (uint8_t *)msg, strlen(msg), 100);	
+	cnt= 0;
+	}
+    osDelay(20);
 
   }
   /* USER CODE END StartDefaultTask */
+}
+
+/* USER CODE BEGIN Header_StartTask02 */
+/**
+* @brief Function implementing the TEST thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartTask02 */
+void StartTask02(void *argument)
+{
+  /* USER CODE BEGIN StartTask02 */
+  /* Infinite loop */
+  for(;;)
+  {
+    test_cnt++;
+    osDelay(50);
+  }
+  /* USER CODE END StartTask02 */
 }
 
 /* Private application code --------------------------------------------------*/
