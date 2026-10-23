@@ -28,7 +28,8 @@
 #include "usart.h"
 #include "motor.h"
 #include <stdio.h>
-#include <string.h> 
+#include <string.h>
+#include "encoder.h" 
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -129,25 +130,31 @@ void MX_FREERTOS_Init(void) {
 void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN StartDefaultTask */
-  char msg[48];
-	uint32_t cnt= 0;
-	uint32_t last= osKernelGetTickCount();
 	
 	motor_init();
-	motor_set(3600, 0);
+	encoder_init();
+  motor_stop();
+
+  
   for(;;)
   {
-	cnt++;
-	if(osKernelGetTickCount()-last>=1000)
-	{
-	last= osKernelGetTickCount();
-	 sprintf(msg, "cnt=%lu test=%lu heap=%lu\r\n", cnt, test_cnt, xPortGetFreeHeapSize());
-	 HAL_UART_Transmit(&huart3, (uint8_t *)msg, strlen(msg), 100);	
-	cnt= 0;
-	}
-    osDelay(20);
+  HAL_UART_Transmit(&huart3, (uint8_t *)"FWD\r\n", 5, 100);//25%速度正转 
+  motor_set(1800, 1800);      
+  osDelay(2000);
 
-  }
+  HAL_UART_Transmit(&huart3, (uint8_t *)"STOP\r\n", 6, 100);//停转
+  motor_stop();
+  osDelay(1000);
+
+  HAL_UART_Transmit(&huart3, (uint8_t *)"REV\r\n", 5, 100);//25%速度反转
+  motor_set(-1800, -1800);    /* 25% 反转 */
+  osDelay(2000);
+
+  HAL_UART_Transmit(&huart3, (uint8_t *)"STOP\r\n", 6, 100);//停转
+  motor_stop();
+  osDelay(1000);
+	
+	}
   /* USER CODE END StartDefaultTask */
 }
 
@@ -161,11 +168,14 @@ void StartDefaultTask(void *argument)
 void StartTask02(void *argument)
 {
   /* USER CODE BEGIN StartTask02 */
+  char msg[48];
   /* Infinite loop */
   for(;;)
   {
-    test_cnt++;
-    osDelay(50);
+    int rpm = (int)encoder_rpm();
+    sprintf(msg, "%d\r\n", rpm);
+     HAL_UART_Transmit(&huart3, (uint8_t *)msg, strlen(msg), 100);
+     osDelay(100);
   }
   /* USER CODE END StartTask02 */
 }

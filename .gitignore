@@ -21,5 +21,13 @@ RTE/
 # STM32CubeMX
 .mxproject
 
+# CMake / GCC build output
+build/
+
+# STM32 VS Code extension local state
+.settings/
+.clangd
+CMakeLists.txt.bak
+
 # VS Code
 .vscode/
