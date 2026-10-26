@@ -48,6 +48,10 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     User/motor.c
     User/tracking.c
     User/encoder.c
+    User/key.c
+    User/oled.c
+    User/font.c
+    User/menu.c
 )
 
 # Add include paths

@@ -31,3 +31,6 @@ CMakeLists.txt.bak
 
 # VS Code
 .vscode/
+
+# draw.io backup files
+*.drawio.bak*

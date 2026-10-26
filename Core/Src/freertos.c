@@ -27,6 +27,8 @@
 /* USER CODE BEGIN Includes */
 #include "usart.h"
 #include "motor.h"
+#include "oled.h"
+#include "menu.h"  
 #include <stdio.h>
 #include <string.h>
 #include "encoder.h" 
@@ -63,7 +65,7 @@ const osThreadAttr_t defaultTask_attributes = {
 osThreadId_t TESTHandle;
 const osThreadAttr_t TEST_attributes = {
   .name = "TEST",
-  .stack_size = 128 * 4,
+  .stack_size = 256 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
 
@@ -138,22 +140,7 @@ void StartDefaultTask(void *argument)
   
   for(;;)
   {
-  HAL_UART_Transmit(&huart3, (uint8_t *)"FWD\r\n", 5, 100);//25%速度正转 
-  motor_set(1800, 1800);      
-  osDelay(2000);
-
-  HAL_UART_Transmit(&huart3, (uint8_t *)"STOP\r\n", 6, 100);//停转
-  motor_stop();
-  osDelay(1000);
-
-  HAL_UART_Transmit(&huart3, (uint8_t *)"REV\r\n", 5, 100);//25%速度反转
-  motor_set(-1800, -1800);    /* 25% 反转 */
-  osDelay(2000);
-
-  HAL_UART_Transmit(&huart3, (uint8_t *)"STOP\r\n", 6, 100);//停转
-  motor_stop();
-  osDelay(1000);
-	
+    osDelay(1000); 
 	}
   /* USER CODE END StartDefaultTask */
 }
@@ -168,14 +155,19 @@ void StartDefaultTask(void *argument)
 void StartTask02(void *argument)
 {
   /* USER CODE BEGIN StartTask02 */
-  char msg[48];
+  key_init();
+  osDelay(50);            /* 等 OLED 上电稳定 */
+  OLED_Init();
+  menu_init();  
   /* Infinite loop */
   for(;;)
   {
-    int rpm = (int)encoder_rpm();
-    sprintf(msg, "%d\r\n", rpm);
-     HAL_UART_Transmit(&huart3, (uint8_t *)msg, strlen(msg), 100);
-     osDelay(100);
+    key_event_t e = key_scan();
+     if (e != KEY_NONE)
+      {
+          menu_handle(e); /* 内部改状态 + 重绘 */
+      }
+    osDelay(10);
   }
   /* USER CODE END StartTask02 */
 }

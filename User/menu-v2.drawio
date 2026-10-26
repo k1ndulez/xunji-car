@@ -1,0 +1,125 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="menu-v2" name="Menu v2">
+    <mxGraphModel dx="800" dy="600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="d1-title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=14;fontStyle=1;" value="① 页面结构（MODE → 两个模式页 → 编辑 / 启动）" vertex="1">
+          <mxGeometry height="30" width="620" x="40" y="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="d1-main" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;" value="PAGE_MAIN&lt;br&gt;MODE&lt;br&gt;▸ BT-CTRL&lt;br&gt;   AUTO-TRACK" vertex="1">
+          <mxGeometry height="90" width="240" x="300" y="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="d1-bt" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;" value="PAGE_BT&lt;br&gt;BT-CONTROL&lt;br&gt;行光标：RPM / P / I / D" vertex="1">
+          <mxGeometry height="90" width="250" x="120" y="290" as="geometry"/>
+        </mxCell>
+        <mxCell id="d1-auto" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;" value="PAGE_AUTO&lt;br&gt;AUTO-TRACK&lt;br&gt;行光标：RPM / P / I / D / START" vertex="1">
+          <mxGeometry height="90" width="260" x="480" y="290" as="geometry"/>
+        </mxCell>
+        <mxCell id="d1-edit" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;" value="EDIT（编辑态）&lt;br&gt;← / → 减 / 加&lt;br&gt;OK 保存 · BACK 取消" vertex="1">
+          <mxGeometry height="90" width="250" x="480" y="500" as="geometry"/>
+        </mxCell>
+        <mxCell id="d1-run" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="RUN（启动循迹）" vertex="1">
+          <mxGeometry height="50" width="170" x="800" y="310" as="geometry"/>
+        </mxCell>
+        <mxCell id="d1-e1" parent="1" source="d1-main" target="d1-bt" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;exitX=0.25;exitY=1;entryX=0.5;entryY=0;" value="OK（光标=BT）" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="d1-e2" parent="1" source="d1-main" target="d1-auto" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;exitX=0.75;exitY=1;entryX=0.5;entryY=0;" value="OK（光标=AUTO）" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="d1-e3" parent="1" source="d1-bt" target="d1-main" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" value="BACK" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="d1-e4" parent="1" source="d1-auto" target="d1-main" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;exitX=1;exitY=0.3;entryX=1;entryY=0.5;" value="BACK" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="d1-e5" parent="1" source="d1-bt" target="d1-edit" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;exitX=0.5;exitY=1;entryX=0;entryY=0.5;" value="OK（行=P/I/D）" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="d1-e6" parent="1" source="d1-auto" target="d1-edit" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" value="OK（行=P/I/D）" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="d1-e7" parent="1" source="d1-edit" target="d1-bt" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;exitX=0;exitY=0.5;entryX=0.5;entryY=1;dashed=1;" value="OK保存 / BACK取消" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="d1-e8" parent="1" source="d1-edit" target="d1-auto" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;exitX=1;exitY=0.5;entryX=0.5;entryY=1;dashed=1;" value="OK保存 / BACK取消" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="d1-e9" parent="1" source="d1-auto" target="d1-run" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;exitX=1;exitY=0.8;entryX=0;entryY=0.5;" value="OK（行=START）" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="d1-note" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=12;whiteSpace=wrap;" value="选中行：行首 &gt;、行尾 &lt;；编辑时行尾变 *。&lt;br&gt;draw_* 只画，不 NewFrame / ShowFrame。" vertex="1">
+          <mxGeometry height="60" width="560" x="120" y="640" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="d2-title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=14;fontStyle=1;" value="② 页面内按键（BT / AUTO 共用，非编辑态）" vertex="1">
+          <mxGeometry height="30" width="620" x="40" y="740" as="geometry"/>
+        </mxCell>
+        <mxCell id="d2-start" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="页面内按键 e" vertex="1">
+          <mxGeometry height="40" width="220" x="300" y="785" as="geometry"/>
+        </mxCell>
+        <mxCell id="d2-sw" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="e ?" vertex="1">
+          <mxGeometry height="90" width="280" x="270" y="850" as="geometry"/>
+        </mxCell>
+        <mxCell id="d2-left" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="光标上移：row = (row + n - 1) % n" vertex="1">
+          <mxGeometry height="45" width="270" x="610" y="790" as="geometry"/>
+        </mxCell>
+        <mxCell id="d2-right" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="光标下移：row = (row + 1) % n" vertex="1">
+          <mxGeometry height="45" width="270" x="610" y="850" as="geometry"/>
+        </mxCell>
+        <mxCell id="d2-back" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" value="回 PAGE_MAIN，s_cursor = 0" vertex="1">
+          <mxGeometry height="45" width="270" x="610" y="910" as="geometry"/>
+        </mxCell>
+        <mxCell id="d2-ok" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="OK：光标在哪一行？" vertex="1">
+          <mxGeometry height="90" width="300" x="260" y="980" as="geometry"/>
+        </mxCell>
+        <mxCell id="d2-pid" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="P / I / D：s_edit = 1，s_edit_val = 当前值" vertex="1">
+          <mxGeometry height="45" width="300" x="610" y="960" as="geometry"/>
+        </mxCell>
+        <mxCell id="d2-start2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="START：启动（mode = RUN）" vertex="1">
+          <mxGeometry height="45" width="300" x="610" y="1020" as="geometry"/>
+        </mxCell>
+        <mxCell id="d2-rpm" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" value="RPM：无动作" vertex="1">
+          <mxGeometry height="45" width="300" x="610" y="1080" as="geometry"/>
+        </mxCell>
+        <mxCell id="d2-e1" parent="1" source="d2-start" target="d2-sw" style="html=1;endArrow=classic;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="d2-e2" parent="1" source="d2-sw" target="d2-left" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;exitX=1;exitY=0.25;entryX=0;entryY=0.5;" value="LEFT" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="d2-e3" parent="1" source="d2-sw" target="d2-right" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" value="RIGHT" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="d2-e4" parent="1" source="d2-sw" target="d2-back" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;exitX=1;exitY=0.75;entryX=0;entryY=0.5;" value="BACK" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="d2-e5" parent="1" source="d2-sw" target="d2-ok" style="html=1;endArrow=classic;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" value="OK" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="d2-e6" parent="1" source="d2-ok" target="d2-pid" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;exitX=1;exitY=0.25;entryX=0;entryY=0.5;" value="P/I/D" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="d2-e7" parent="1" source="d2-ok" target="d2-start2" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" value="START" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="d2-e8" parent="1" source="d2-ok" target="d2-rpm" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;exitX=1;exitY=0.75;entryX=0;entryY=0.5;" value="RPM" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="d3-title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=14;fontStyle=1;" value="③ 编辑态（进入 → 调整 → 保存 / 取消）" vertex="1">
+          <mxGeometry height="30" width="620" x="1020" y="720" as="geometry"/>
+        </mxCell>
+        <mxCell id="d3-t1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontStyle=1;" value="进入：页面内按 OK" vertex="1">
+          <mxGeometry height="25" width="300" x="1020" y="770" as="geometry"/>
+        </mxCell>
+        <mxCell id="d3-sw1" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="s_cursor &amp;gt;= 1 ?" vertex="1">
+          <mxGeometry height="90" width="320" x="1120" y="800" as="geometry"/>
+        </mxCell>
+        <mxCell id="d3-yes1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="s_edit = 1&lt;br&gt;s_edit_val = s_params[s_cursor - 1]" vertex="1">
+          <mxGeometry height="60" width="300" x="1500" y="785" as="geometry"/>
+        </mxCell>
+        <mxCell id="d3-no1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" value="RPM 行：无动作" vertex="1">
+          <mxGeometry height="45" width="300" x="1500" y="860" as="geometry"/>
+        </mxCell>
+        <mxCell id="d3-t2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontStyle=1;" value="编辑中：menu_handle 先判 s_edit" vertex="1">
+          <mxGeometry height="25" width="420" x="1020" y="920" as="geometry"/>
+        </mxCell>
+        <mxCell id="d3-sw2" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="e ?" vertex="1">
+          <mxGeometry height="90" width="320" x="1120" y="950" as="geometry"/>
+        </mxCell>
+        <mxCell id="d3-l" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="←：s_edit_val -= k_step[idx]" vertex="1">
+          <mxGeometry height="45" width="300" x="1500" y="915" as="geometry"/>
+        </mxCell>
+        <mxCell id="d3-r" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="→：s_edit_val += k_step[idx]" vertex="1">
+          <mxGeometry height="45" width="300" x="1500" y="970" as="geometry"/>
+        </mxCell>
+        <mxCell id="d3-ok" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="OK：s_params[idx] = s_edit_val&lt;br&gt;s_edit = 0（保存）" vertex="1">
+          <mxGeometry height="60" width="300" x="1500" y="1025" as="geometry"/>
+        </mxCell>
+        <mxCell id="d3-bk" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" value="BACK：s_edit = 0（放弃，不改 s_params）" vertex="1">
+          <mxGeometry height="50" width="300" x="1500" y="1095" as="geometry"/>
+        </mxCell>
+        <mxCell id="d3-clamp" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" value="加减后都要钳位：k_min[idx] ~ k_max[idx]&lt;br&gt;（P 0~100，I 0~10，D 0~1，FILTER 0~10）" vertex="1">
+          <mxGeometry height="60" width="360" x="1100" y="1085" as="geometry"/>
+        </mxCell>
+        <mxCell id="d3-e1" parent="1" source="d3-sw1" target="d3-yes1" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;exitX=1;exitY=0.35;entryX=0;entryY=0.5;" value="P / I / D / FILTER" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="d3-e2" parent="1" source="d3-sw1" target="d3-no1" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;exitX=1;exitY=0.7;entryX=0;entryY=0.5;" value="RPM" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="d3-e3" parent="1" source="d3-sw2" target="d3-l" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;exitX=1;exitY=0.2;entryX=0;entryY=0.5;" value="LEFT" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="d3-e4" parent="1" source="d3-sw2" target="d3-r" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;exitX=1;exitY=0.45;entryX=0;entryY=0.5;" value="RIGHT" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="d3-e5" parent="1" source="d3-sw2" target="d3-ok" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;exitX=1;exitY=0.7;entryX=0;entryY=0.5;" value="OK" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="d3-e6" parent="1" source="d3-sw2" target="d3-bk" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;exitX=1;exitY=0.95;entryX=0;entryY=0.5;" value="BACK" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="d3-e7" parent="1" source="d3-yes1" target="d3-sw2" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;dashed=1;exitX=0.5;exitY=1;entryX=1;entryY=0.5;" value="下一次按键" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="d3-note" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=12;whiteSpace=wrap;" value="idx = s_cursor - 1；浏览时行尾 &lt;，编辑时变 *。&lt;br&gt;draw_* 只画；刷屏仍由 menu_draw 统一做。" vertex="1">
+          <mxGeometry height="60" width="700" x="1020" y="1180" as="geometry"/>
+        </mxCell>      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
