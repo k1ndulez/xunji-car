@@ -52,6 +52,7 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     User/oled.c
     User/font.c
     User/menu.c
+    User/pid.c
 )
 
 # Add include paths

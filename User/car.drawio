@@ -1,0 +1,38 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="car-fsm" name="Car FSM">
+    <mxGraphModel dx="900" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="s-title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#1F3864;" value="循迹车状态机（简易版）" vertex="1">
+          <mxGeometry height="30" width="620" x="40" y="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="s-power" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=12;" value="上电" vertex="1">
+          <mxGeometry height="40" width="100" x="60" y="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="s-idle" parent="1" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" value="IDLE 待机&lt;br&gt;电机停 / 清积分" vertex="1">
+          <mxGeometry height="80" width="190" x="200" y="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="s-run" parent="1" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="RUN 循迹&lt;br&gt;外环 + 内环" vertex="1">
+          <mxGeometry height="80" width="190" x="440" y="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="s-lost" parent="1" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" value="LOST 丢线&lt;br&gt;降速直行找线" vertex="1">
+          <mxGeometry height="80" width="190" x="440" y="280" as="geometry"/>
+        </mxCell>
+        <mxCell id="s-fault" parent="1" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" value="FAULT 故障&lt;br&gt;停机 + LED 报警" vertex="1">
+          <mxGeometry height="80" width="190" x="640" y="190" as="geometry"/>
+        </mxCell>
+        <mxCell id="s-e1" parent="1" source="s-power" target="s-idle" style="html=1;labelBackgroundColor=#FFFFFF;endArrow=classic;" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="s-e2" parent="1" source="s-idle" target="s-run" style="html=1;labelBackgroundColor=#FFFFFF;endArrow=classic;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" value="启动（菜单/按键）" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="s-e3" parent="1" source="s-run" target="s-lost" style="html=1;labelBackgroundColor=#FFFFFF;endArrow=classic;exitX=0.4;exitY=1;entryX=0.4;entryY=0;" value="连续 N 拍全白" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="s-e4" parent="1" source="s-lost" target="s-run" style="html=1;labelBackgroundColor=#FFFFFF;endArrow=classic;exitX=0.7;exitY=0;entryX=0.7;entryY=1;" value="找回线" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="s-e5" parent="1" source="s-lost" target="s-fault" style="html=1;labelBackgroundColor=#FFFFFF;endArrow=classic;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" value="超时 500 ms" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="s-e6" parent="1" source="s-run" target="s-fault" style="edgeStyle=orthogonalEdgeStyle;html=1;labelBackgroundColor=#FFFFFF;endArrow=classic;dashed=1;exitX=1;exitY=0.2;entryX=0;entryY=0.2;" value="急停 / 堵转" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="s-e7" parent="1" source="s-fault" target="s-idle" style="edgeStyle=orthogonalEdgeStyle;html=1;labelBackgroundColor=#FFFFFF;endArrow=classic;exitX=0.5;exitY=0;entryX=0.5;entryY=0;" value="手动复位" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="s-note" parent="1" style="rounded=1;arcSize=4;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#CCCCCC;dashed=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=12;" value="四条规则：&lt;br&gt;1. IDLE 只做停机 + 清积分，不发 PWM。&lt;br&gt;2. RUN 才是外环 + 内环同时工作。&lt;br&gt;3. LOST 不停车：记住最后偏差方向、降速直行找线，超时才进 FAULT。&lt;br&gt;4. FAULT 不自动恢复：必须手动复位，否则车会在场地上乱冲。" vertex="1">
+          <mxGeometry height="120" width="700" x="40" y="440" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

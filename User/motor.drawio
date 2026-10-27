@@ -1,0 +1,128 @@
+<mxfile host="65bd71144e">
+    <diagram id="motor-loop" name="Motor Loop">
+        <mxGraphModel dx="1420" dy="764" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1700" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="m-title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#1F3864;" value="电机速度闭环（单电机，20 ms）" vertex="1">
+                    <mxGeometry height="30" width="620" x="40" y="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="m-cmd" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" value="目标转速&lt;br&gt;rpm_cmd" vertex="1">
+                    <mxGeometry height="60" width="160" x="40" y="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="m-sum" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=14;fontStyle=1;" value="Σ" vertex="1">
+                    <mxGeometry height="60" width="60" x="260" y="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="m-pid" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="PID&lt;br&gt;Kp / Ki / Kd" vertex="1">
+                    <mxGeometry height="70" width="170" x="370" y="115" as="geometry"/>
+                </mxCell>
+                <mxCell id="m-lim" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="限幅&lt;br&gt;±7200" vertex="1">
+                    <mxGeometry height="70" width="150" x="590" y="115" as="geometry"/>
+                </mxCell>
+                <mxCell id="bH9JU_WBglyUz1XumPTO-2" edge="1" parent="1" source="m-tb" style="edgeStyle=none;html=1;" value="">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="665" y="160" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="m-tb" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="TB6612&lt;br&gt;PWM + 方向" vertex="1">
+                    <mxGeometry height="70" width="150" x="590" y="240" as="geometry"/>
+                </mxCell>
+                <mxCell id="m-motor" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=12;" value="电机" vertex="1">
+                    <mxGeometry height="70" width="150" x="590" y="360" as="geometry"/>
+                </mxCell>
+                <mxCell id="m-enc" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=12;" value="编码器&lt;br&gt;TIM1" vertex="1">
+                    <mxGeometry height="70" width="150" x="590" y="480" as="geometry"/>
+                </mxCell>
+                <mxCell id="m-rpm" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="rpm 计算&lt;br&gt;count / 20 ms" vertex="1">
+                    <mxGeometry height="70" width="170" x="370" y="480" as="geometry"/>
+                </mxCell>
+                <mxCell id="m-e1" edge="1" parent="1" source="m-cmd" style="html=1;labelBackgroundColor=#FFFFFF;endArrow=classic;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="m-sum" value="+">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="m-e2" edge="1" parent="1" source="m-sum" style="html=1;labelBackgroundColor=#FFFFFF;endArrow=classic;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="m-pid" value="误差 e">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="m-e3" edge="1" parent="1" source="m-pid" style="html=1;labelBackgroundColor=#FFFFFF;endArrow=classic;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="m-lim" value="duty">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="m-e4" edge="1" parent="1" source="m-lim" style="html=1;labelBackgroundColor=#FFFFFF;endArrow=classic;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="m-tb">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="m-e5" edge="1" parent="1" source="m-tb" style="html=1;labelBackgroundColor=#FFFFFF;endArrow=classic;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="m-motor">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="m-e6" edge="1" parent="1" source="m-motor" style="html=1;labelBackgroundColor=#FFFFFF;endArrow=classic;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="m-enc" value="转动">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="m-e7" edge="1" parent="1" source="m-enc" style="html=1;labelBackgroundColor=#FFFFFF;endArrow=classic;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" target="m-rpm" value="脉冲">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="m-e8" edge="1" parent="1" source="m-rpm" style="edgeStyle=orthogonalEdgeStyle;html=1;labelBackgroundColor=#FFFFFF;endArrow=classic;exitX=0;exitY=0.5;entryX=0.5;entryY=1;" target="m-sum" value="− 实测 rpm">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="m-note" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=12;whiteSpace=wrap;" value="T_Speed 任务（20 ms）循环：&lt;br&gt;① encoder_rpm() 取实测转速&lt;br&gt;② pid_update(目标, 实测) 算出 duty&lt;br&gt;③ motor_set(duty, 0) 输出&lt;br&gt;注意：duty 与 rpm 方向要一致（正 duty 应得到正 rpm），反了会正反馈。" vertex="1">
+                    <mxGeometry height="100" width="620" x="40" y="620" as="geometry"/>
+                </mxCell>
+                <mxCell id="m-layer" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#CCCCCC;dashed=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=12;" value="代码分层：&lt;br&gt;motor.c/h    → motor_set / motor_stop（只碰 TB6612 和 PWM）&lt;br&gt;encoder.c/h  → encoder_rpm（只碰 TIM1 计数）&lt;br&gt;pid.c/h      → pid_update（纯计算，不碰硬件）&lt;br&gt;freertos.c   → T_Speed 任务把三者串起来" vertex="1">
+                    <mxGeometry height="110" width="620" x="40" y="740" as="geometry"/>
+                </mxCell>        <mxCell id="t23-title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#1F3864;" value="外环 + 差速混合（循迹 → 左右轮目标）" vertex="1">
+          <mxGeometry height="30" width="900" x="40" y="940" as="geometry"/>
+        </mxCell>
+        <mxCell id="t23-sensor" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=12;" value="灰度 8 路" vertex="1">
+          <mxGeometry height="55" width="140" x="40" y="1000" as="geometry"/>
+        </mxCell>
+        <mxCell id="t23-read" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="读成 8 bit&lt;br&gt;1 = 黑线" vertex="1">
+          <mxGeometry height="55" width="150" x="210" y="1000" as="geometry"/>
+        </mxCell>
+        <mxCell id="t23-err" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="加权偏差 error&lt;br&gt;左负右正" vertex="1">
+          <mxGeometry height="55" width="180" x="390" y="1000" as="geometry"/>
+        </mxCell>
+        <mxCell id="t23-gain" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="× Kp（外环 P）" vertex="1">
+          <mxGeometry height="55" width="150" x="600" y="1000" as="geometry"/>
+        </mxCell>
+        <mxCell id="t23-turn" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" value="turn&lt;br&gt;（转向量）" vertex="1">
+          <mxGeometry height="55" width="140" x="780" y="1000" as="geometry"/>
+        </mxCell>
+        <mxCell id="t23-cmd" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" value="rpm_cmd&lt;br&gt;（前进速度）" vertex="1">
+          <mxGeometry height="55" width="180" x="390" y="1100" as="geometry"/>
+        </mxCell>
+        <mxCell id="t23-mixl" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="L = rpm_cmd − turn" vertex="1">
+          <mxGeometry height="55" width="200" x="620" y="1090" as="geometry"/>
+        </mxCell>
+        <mxCell id="t23-mixr" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="R = rpm_cmd + turn" vertex="1">
+          <mxGeometry height="55" width="200" x="620" y="1170" as="geometry"/>
+        </mxCell>
+        <mxCell id="t23-pidl" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="PID_L" vertex="1">
+          <mxGeometry height="55" width="120" x="860" y="1090" as="geometry"/>
+        </mxCell>
+        <mxCell id="t23-pidr" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="PID_R" vertex="1">
+          <mxGeometry height="55" width="120" x="860" y="1170" as="geometry"/>
+        </mxCell>
+        <mxCell id="t23-ml" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=12;" value="左电机" vertex="1">
+          <mxGeometry height="55" width="90" x="1010" y="1090" as="geometry"/>
+        </mxCell>
+        <mxCell id="t23-mr" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=12;" value="右电机" vertex="1">
+          <mxGeometry height="55" width="90" x="1010" y="1170" as="geometry"/>
+        </mxCell>
+        <mxCell id="t23-lost" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;dashed=1;fontSize=12;" value="丢线处理&lt;br&gt;降速找线 / 超时停车" vertex="1">
+          <mxGeometry height="70" width="150" x="40" y="1100" as="geometry"/>
+        </mxCell>
+        <mxCell id="t23-e1" parent="1" source="t23-sensor" target="t23-read" style="html=1;labelBackgroundColor=#FFFFFF;endArrow=classic;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="t23-e2" parent="1" source="t23-read" target="t23-err" style="html=1;labelBackgroundColor=#FFFFFF;endArrow=classic;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" value="bits" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="t23-e3" parent="1" source="t23-err" target="t23-gain" style="html=1;labelBackgroundColor=#FFFFFF;endArrow=classic;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" value="error" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="t23-e4" parent="1" source="t23-gain" target="t23-turn" style="html=1;labelBackgroundColor=#FFFFFF;endArrow=classic;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" value="turn" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="t23-e5" parent="1" source="t23-cmd" target="t23-mixl" style="html=1;labelBackgroundColor=#FFFFFF;endArrow=classic;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" value="+" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="t23-e6" parent="1" source="t23-cmd" target="t23-mixr" style="edgeStyle=orthogonalEdgeStyle;html=1;labelBackgroundColor=#FFFFFF;endArrow=classic;exitX=0.5;exitY=1;entryX=0;entryY=0.5;" value="+" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="t23-e7" parent="1" source="t23-turn" target="t23-mixl" style="edgeStyle=orthogonalEdgeStyle;html=1;labelBackgroundColor=#FFFFFF;endArrow=classic;exitX=0.5;exitY=1;entryX=1;entryY=0.5;" value="−" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="t23-e8" parent="1" source="t23-turn" target="t23-mixr" style="edgeStyle=orthogonalEdgeStyle;html=1;labelBackgroundColor=#FFFFFF;endArrow=classic;exitX=0.5;exitY=1;entryX=1;entryY=0.5;" value="+" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="t23-e9" parent="1" source="t23-mixl" target="t23-pidl" style="html=1;labelBackgroundColor=#FFFFFF;endArrow=classic;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" value="目标 L" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="t23-e10" parent="1" source="t23-mixr" target="t23-pidr" style="html=1;labelBackgroundColor=#FFFFFF;endArrow=classic;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" value="目标 R" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="t23-e11" parent="1" source="t23-pidl" target="t23-ml" style="html=1;labelBackgroundColor=#FFFFFF;endArrow=classic;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" value="duty L" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="t23-e12" parent="1" source="t23-pidr" target="t23-mr" style="html=1;labelBackgroundColor=#FFFFFF;endArrow=classic;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" value="duty R" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="t23-e13" parent="1" source="t23-read" target="t23-lost" style="edgeStyle=orthogonalEdgeStyle;html=1;labelBackgroundColor=#FFFFFF;endArrow=classic;dashed=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" value="全白 / 全黑" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="t23-note" parent="1" style="rounded=1;arcSize=4;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#CCCCCC;dashed=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=12;" value="偏差公式（8 路）：error = Σ (i − 3.5) × bit_i / Σ bit_i，最左 −3.5、最右 +3.5。&lt;br&gt;外环周期 20~40 ms；先只用 P：turn = Kp × error。&lt;br&gt;左右轮目标 L/R 直接喂给两路速度 PID，就完成了“外环 → 内环”的串联。&lt;br&gt;丢线：记住最后偏差方向、降速直行找线，超时才停车。" vertex="1">
+          <mxGeometry height="110" width="960" x="40" y="1270" as="geometry"/>
+        </mxCell>      </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
